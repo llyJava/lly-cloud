@@ -11,7 +11,7 @@ spring:
     name: transaction-server
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${cloud.ip}:3306/tx-manager?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://${cloud.ip}:3306/tx_manager?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
   jpa:
@@ -61,7 +61,7 @@ tx-lcn:
   logger:
     enabled: true
   driver-class-name: com.mysql.jdbc.Driver
-  jdbc-url: jdbc:mysql://${cloud.ip}:3306/tx-logger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+  jdbc-url: jdbc:mysql://${cloud.ip}:3306/tx_logger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
   username: root
   password: root
   manager:

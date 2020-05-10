@@ -6,7 +6,7 @@
 
 	<parent>
 		<groupId>com.cloud</groupId>
-		<artifactId>lly-cloud</artifactId>
+		<artifactId>cloud-commons</artifactId>
 		<version>1.0</version>
 	</parent>
 
