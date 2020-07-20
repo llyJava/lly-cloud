@@ -91,6 +91,13 @@ transaction-server  | 分布式事务服务 |
 -   注意!!!!!编译器请安装lombok插件,不然会报红
 
 
+-- 快速启动过程详解lly
+    1.各个模块建立数据库，并执行sql初始化，涉及到的模块有：
+        nacos,nacos.sql; user_center;user_center.sql;tx_loger,tx_loger.sql;tx_manager,tx_manager.sql;cloud_files,cloud_files;
+    2.下载nacos-server.jar,并放到指定目录，修改nacos下/bin/startup.cmd脚本可以读取到
+    3.安装上面的顺序启动即可
+    
+    redis默认安装是没有密码的，当在配置文件中设置密码后，这里连接也是不需要密码的，只有
 
 
 
