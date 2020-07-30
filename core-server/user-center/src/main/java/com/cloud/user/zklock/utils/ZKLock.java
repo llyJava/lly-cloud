@@ -24,14 +24,14 @@ public class ZKLock implements DistributedLock {
     private InterProcessMutex lock;
 
     public ZKLock(String host, String bizType, String lockKey) {
-        client = CuratorFrameworkFactory.newClient(host,
-                new ExponentialBackoffRetry(ZKLockConstant.BASE_SLEEP_TIME_MS, ZKLockConstant.MAX_RETRIES));
+        client = CuratorFrameworkFactory.newClient(host,new ExponentialBackoffRetry(ZKLockConstant.BASE_SLEEP_TIME_MS, ZKLockConstant.MAX_RETRIES));
         client.start();
 
         String path = ZKLockConstant.ZK_SEPERATOR + StringUtils.join(Arrays.asList(ZKLockConstant.ZK_LOCK_BASE_PREFIX, bizType, lockKey), ZKLockConstant.ZK_SEPERATOR);
         lock = new InterProcessMutex(client, path);
     }
 
+    @Override
     public void lock() {
         try {
             lock.acquire();
