@@ -128,4 +128,15 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> i
         List<FileInfo> list= fileInfoMapper.selectFilesByIds(ids);
         return list;
     }
+
+    /**
+     * 错误回调方法参数签名必须与原方法一致
+     *
+     * @param name
+     * @return
+     */
+    public String fallback(String name, Throwable e) {
+        //log.info("这是造成服务降级的异常信息：{}",name, e);
+        return "this is fallback message! ";
+    }
 }
