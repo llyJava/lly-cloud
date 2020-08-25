@@ -15,10 +15,10 @@ spring:
   application:
     name: user-center
   datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://${cloud.ip}:3306/user_center?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${cloud.ip}:3306/user_center?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       username: root
-      password: root
+      password: 123
       initialSize: 5
       minIdle: 5
       maxActive: 20
@@ -47,7 +47,7 @@ spring:
   redis:
       host: ${cloud.ip}
       port: 6379
-      password:
+      password: 123
       timeout: 10s
       lettuce:
         pool:
@@ -108,9 +108,9 @@ tx-lcn:
         enabled: true
   logger:
     enabled: true
-    driver-class-name: com.mysql.jdbc.Driver
-    jdbc-url: jdbc:mysql://${cloud.ip}:3306/tx_logger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://${cloud.ip}:3306/tx_logger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    password: root
+    password: 123
   client:
     manager-address: ${cloud.ip}:8070

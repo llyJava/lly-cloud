@@ -10,10 +10,10 @@ spring:
   application:
     name: transaction-server
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${cloud.ip}:3306/tx_manager?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${cloud.ip}:3306/tx_manager?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
-    password: root
+    password: 123
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
@@ -30,7 +30,7 @@ spring:
   redis:
     host: ${cloud.ip}
     port: 6379
-    password:
+    password: 123
     timeout: 10s
     lettuce:
       pool:
@@ -63,7 +63,7 @@ tx-lcn:
   driver-class-name: com.mysql.jdbc.Driver
   jdbc-url: jdbc:mysql://${cloud.ip}:3306/tx_logger?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
   username: root
-  password: root
+  password: 123
   manager:
     host: ${cloud.ip}
     port: 8070    # TxClient连接请求端口

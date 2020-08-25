@@ -102,7 +102,17 @@ transaction-server  | 分布式事务服务 |
     3.按照上面的顺序启动即可
     
     redis默认安装是没有密码的，当在配置文件中设置密码后，这里连接也是不需要密码的，只有
-
+    
+ 注意nacos启动不了，或者启动没有后没有反应，
+    1.下载nacos-server.jar,放到com.cloud.RegisterConfigCenter的nacos/target/下，
+    2.在命令行启动，进入nacos/bin下，启动 .\startup.cmd -m standalone,观察是否启动，
+        报错1 java.sql.SQLException: Unable to load authentication plugin 'caching_sha2_password'
+            解：是因为nacos的mysql是5.7 ，而我们mysql数据是8.0，加密方式不对
+                1.1 修改密码 db.url.0= ,db.user=root, db.password=123
+                1.2 修改数据加密方式 ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY '123';
+                1.3 再启动nacos
+        报错2 The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone.
+          解：mysql连接加上&serverTimezone=UTC
 
 
 

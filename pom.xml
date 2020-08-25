@@ -81,6 +81,10 @@
 			<artifactId>txlcn-txmsg-netty</artifactId>
 			<version>${txlcn.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
 <!--		&lt;!&ndash;curator这个开源项目提供zookeeper分布式锁实现&ndash;&gt;
 		<dependency>
 			<groupId>org.apache.curator</groupId>
