@@ -6,11 +6,16 @@ import com.cloud.constants.Constant;
 import com.cloud.files.entity.FileInfo;
 import com.cloud.files.mapper.FileInfoMapper;
 import com.cloud.files.service.IFileInfoService;
+import com.cloud.model.user.AppUser;
 import com.cloud.utils.*;
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -26,6 +31,16 @@ import java.util.*;
  */
 @Service
 public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> implements IFileInfoService {
+
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private FileInfoMapper fileInfoMapper;
@@ -120,6 +135,10 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> i
                 .contentType(contentType).createUser(createUser).url(url).
                         createTime(System.currentTimeMillis()).size(size).id(GenerationSequenceUtil.generateUUID()).build();
         this.insert(fileInfo);
+        //discoveryClient.getInstances("");
+        //LoadBalancerRequest<AppUser> request =null;
+        //loadBalancerClient.execute("user-center",request);
+        //String msg = restTemplate.getForObject("http://productservices/product/findAll", String.class);
         return fileInfo;
     }
 

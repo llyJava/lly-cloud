@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cloud.exceptionHandler.GFCException;
+import com.cloud.feign.FilesClient;
 import com.cloud.utils.ComUtil;
 import com.cloud.utils.GenerationSequenceUtil;
 import com.cloud.utils.PhoneUtil;
@@ -44,6 +45,9 @@ public class AppUserServiceImpl  extends ServiceImpl<AppUserDao, AppUser> implem
     private UserRoleDao userRoleDao;
     @Autowired
     private UserCredentialsDao userCredentialsDao;
+
+    @Autowired
+    private FilesClient filesClient;
 
     @Autowired
     private SysRoleService sysRoleService;
@@ -111,6 +115,10 @@ public class AppUserServiceImpl  extends ServiceImpl<AppUserDao, AppUser> implem
             this.updateById(appUser);
             log.info("修改用户：{}", appUser);
         }
+
+        //调用文件服务 Feign是方便 以接口的方式在微服务间调用，但我们常用restTemplate + url的方式调用
+        String[] sarr = {"2","5"};
+        List<Map> maps = filesClient.selectFilesByIds(sarr);
 
         return appUser;
 
